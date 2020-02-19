@@ -16,3 +16,15 @@ router.get("/all", (req, res) => {
 });
 
 module.exports = router;
+
+//this is how you implement a city route by specific city
+router.get("/:city_id", (req, res) => {
+  let cityRequested = req.params.city_id;
+  cityModel
+    .findOne({ name: cityRequested })
+    .then(city => {
+      console.log(city_id);
+      res.send(itineraries);
+    })
+    .catch(err => console.log(err));
+});
