@@ -19,7 +19,7 @@ app.listen(port, () => {
 });
 
 app.use("/cities", require("./routes/cities"));
-
+// app.use("/itineraries", require("./routes/itinerary"));
 mongoose
   .connect(db, { useNewUrlParser: true, useCreateIndex: true })
   .then(() => console.log("Connection to Mongo DB established"))
