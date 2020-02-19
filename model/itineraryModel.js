@@ -26,5 +26,4 @@ const itinerarySchema = new mongoose.Schema({
   }
 });
 
-//name of module is the singular version (itinerary) of the database name (itineraries)
-module.exports = mongoose.model("itinerary", itinerarySchema);
+module.exports = mongoose.model("itineraries", itinerarySchema);
