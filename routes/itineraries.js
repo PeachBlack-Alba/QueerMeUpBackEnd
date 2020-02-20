@@ -6,6 +6,7 @@ router.get("/:city_id", (req, res) => {
   let itineraryRequested = req.params.city_id;
   itineraryModel
     .find({ city_id: itineraryRequested }) // this case find() in cities findeOne() because in here we want all the itineraries of each city
+    .sort({ order: 1 }) // Ordenamos la data de forma ascendente según el parametro que hemos añadido en MongoDB "orden"
     .then(itinerary => {
       res.send(itinerary);
     })
