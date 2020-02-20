@@ -23,6 +23,9 @@ const itinerarySchema = new mongoose.Schema({
   },
   hashtags: {
     type: String
+  },
+  order: {
+    type: Number
   }
 });
 
