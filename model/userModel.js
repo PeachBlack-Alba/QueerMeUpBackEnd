@@ -18,15 +18,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   }
-  //   googleId: {
-  //     type: String
-  //   },
-  //   oAuth: {
-  //     type: Boolean
-  //   },
-  //   favourites: {
-  //     type: Array
-  //   }
 });
 
 userSchema.plugin(uniqueValidator);
