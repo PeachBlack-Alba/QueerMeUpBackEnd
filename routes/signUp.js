@@ -6,6 +6,7 @@ const userModel = require("../model/userModel");
 
 router.post("/signUp", (req, res) => {
   // Form validation
+  console.log("i am in the sign up route"); // we will see it if we post in postman /signUp/signUp and will show up in terminal
   const { errors, isValid } = validateRegisterInput(req.body);
   // Check validation
   if (!isValid) {
@@ -29,8 +30,8 @@ router.post("/signUp", (req, res) => {
           if (err) throw err;
           newUser.password = hash;
           newUser
-            .save()
-            .then(user => res.json(user))
+            .save() // mongoose function taht allows us to take the new user and save it in the database
+            .then(user => res.json(user)) // we are sending this message to the front end in a json format
             .catch(err => console.log(err));
         });
       });
@@ -40,7 +41,4 @@ router.post("/signUp", (req, res) => {
 
 // access email and password from request body
 
-// const email = req.body.email;
-// const password = req.body.password;
-// const userName = req.body.username;
-// console.log(email);
+module.exports = router;

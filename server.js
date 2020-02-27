@@ -14,14 +14,13 @@ app.use(
 );
 app.use(cors());
 
-app.listen(port, () => {
-  console.log("Server is running on " + port + "port!");
-});
-
 app.use("/cities", require("./routes/cities"));
 app.use("/itineraries", require("./routes/itineraries"));
-app.use("/signUp", require("./routes/signUp"));
+app.use("/signUp", require("./routes/signUp")); // url will be sigUp/signUp beacuse in the route we said also Signup (router.post("/signUp", (req, res))
 mongoose
   .connect(db, { useNewUrlParser: true, useCreateIndex: true })
   .then(() => console.log("Connection to Mongo DB established"))
   .catch(err => console.log(err));
+app.listen(port, () => {
+  console.log("Server is running on " + port + "port!");
+});
