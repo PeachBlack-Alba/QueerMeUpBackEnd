@@ -30,29 +30,29 @@ router.post("/signUp", (req, res) => {
 
   userModel.findOne({ email }).then(user => {
     if (user) {
-      // if user already exits, send error message and error code status(type of error) .json(message you want the user to see)
+      // if email already exits, send error message and error code status(type of error) .json(message you want the user to see)
       return res.status(400).json({ email: "Email already exists" });
-    } else {
-      // only if user does not already exist, create new user
-      const newUser = new userModel({
-        username,
-        email,
-        password,
-        passwordRepeat
-      });
-      // Hash password before saving in database
-      bcrypt.genSalt(10, (err, salt) => {
-        bcrypt.hash(newUser.password, salt, (err, hash) => {
-          if (err) throw err;
-          newUser.password = hash;
-          newUser
-            .save() // mongoose function taht allows us to take the new user and save it in the database
-            .then(user => res.json(user)) // we are sending this message to the front end in a json format
-            .catch(err => res.send(err)); // send the error to front end if there is any
-          console.log(newUser);
-        });
-      });
     }
+  });
+
+  // only if user does not already exist, create new user. We are checking the uniqness in the modal
+  const newUser = new userModel({
+    username,
+    email,
+    password,
+    passwordRepeat
+  });
+  // Hash password before saving in database
+  bcrypt.genSalt(10, (err, salt) => {
+    bcrypt.hash(newUser.password, salt, (err, hash) => {
+      if (err) throw err;
+      newUser.password = hash;
+      newUser
+        .save() // mongoose function taht allows us to take the new user and save it in the database
+        .then(user => res.json(user)) // we are sending this message to the front end in a json format
+        .catch(err => res.send(err)); // send the error to front end if there is any
+      console.log(newUser);
+    });
   });
 });
 
