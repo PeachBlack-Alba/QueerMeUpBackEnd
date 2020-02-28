@@ -44,9 +44,10 @@ router.post("/signUp", (req, res) => {
   });
   // Hash password before saving in database
   bcrypt.genSalt(10, (err, salt) => {
-    bcrypt.hash(newUser.password, salt, (err, hash) => {
+    bcrypt.hash(newUser.password, newUser.passwordRepeat, salt, (err, hash) => {
       if (err) throw err;
       newUser.password = hash;
+      newUser.passwordRepeat = hash;
       newUser
         .save() // mongoose function that allows us to take the new user and save it in the database
         .then(user => res.json(user)) // we are sending this message to the front end in a json format
