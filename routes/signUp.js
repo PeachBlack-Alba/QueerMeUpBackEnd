@@ -48,7 +48,7 @@ router.post("/signUp", (req, res) => {
       if (err) throw err;
       newUser.password = hash;
       newUser
-        .save() // mongoose function taht allows us to take the new user and save it in the database
+        .save() // mongoose function that allows us to take the new user and save it in the database
         .then(user => res.json(user)) // we are sending this message to the front end in a json format
         .catch(err => res.send(err)); // send the error to front end if there is any
       console.log(newUser);
