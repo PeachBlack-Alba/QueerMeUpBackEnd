@@ -4,7 +4,8 @@ const userModel = require("../model/userModel");
 const bcrypt = require("bcrypt");
 const key = require("../keys");
 const jwt = require("jsonwebtoken");
-const { isEmpty } = require("express-validator");
+//const { isEmpty } = require("express-validator"); // use !email or email.isEmpty()
+
 router.post("/logIn", (req, res) => {
   const { email, password } = req.body;
   console.log("i am in the log in route"); // we will see it if we post in postman /logIn/logIn and will show up in terminal
