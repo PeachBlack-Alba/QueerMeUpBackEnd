@@ -6,12 +6,6 @@ const key = require("../keys");
 const jwt = require("jsonwebtoken");
 const { isEmpty } = require("express-validator");
 router.post("/logIn", (req, res) => {
-  var JwtStrategy = require("passport-jwt").Strategy,
-    ExtractJwt = require("passport-jwt").ExtractJwt;
-  //   var email = req.body.email;
-  //   var username = req.body.username;
-  //   var password = req.body.password;
-  //   var user = { name: username };
   const { email, password } = req.body;
   console.log("i am in the log in route"); // we will see it if we post in postman /logIn/logIn and will show up in terminal
   console.log("email", email);
@@ -19,8 +13,6 @@ router.post("/logIn", (req, res) => {
     return res.status(400).json({ error: "Complete all the fields" });
   }
   userModel.findOne({ email }).then(user => {
-    // if (user)
-    //     return res.status(400).json({ email: "Email already exists" });
     bcrypt.compare(password, user.password).then(isMatch => {
       if (!isMatch) return res.status(400).send("Invalid password");
 
