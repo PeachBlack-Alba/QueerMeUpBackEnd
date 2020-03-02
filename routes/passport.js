@@ -22,8 +22,10 @@ module.exports = passport.use(
 
 module.exports = passport.use(
   new JwtStrategy(opts, (jwt_payload, done) => {
+    // jwt used for authentification
+    console.log("req", req);
     user
-      .findById(jwt_payload.id)
+      .findById(jwt_payload.id) // if find the user, return the user, if not, return false
       .then(user => {
         if (user) {
           return done(null, user);

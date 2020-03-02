@@ -14,10 +14,12 @@ router.post("/logIn", (req, res) => {
     return res.status(400).json({ error: "Complete all the fields" });
   }
   userModel.findOne({ email }).then(user => {
+    // check if the user exist
     bcrypt.compare(password, user.password).then(isMatch => {
       if (!isMatch) return res.status(400).send("Invalid password");
 
       const payload = {
+        // if the user match, create the payload and generate a token
         id: user.id,
         username: user.username,
         avatarPicture: user.picture
@@ -27,10 +29,11 @@ router.post("/logIn", (req, res) => {
         if (err) {
           res.json({
             success: false,
-            token: "There was an error"
+            token: "There was an error" // send an error if there is
           });
         } else {
           res.json({
+            // send the token if there is not a problem
             success: true,
             token: token
           });
