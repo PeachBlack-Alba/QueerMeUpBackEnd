@@ -13,6 +13,9 @@ app.use(
   })
 );
 app.use(cors());
+//passport middleware
+app.use(passport.initialize());
+require("./routes/passport");
 
 app.use("/cities", require("./routes/cities"));
 app.use("/itineraries", require("./routes/itineraries"));
