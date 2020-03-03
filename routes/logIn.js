@@ -12,6 +12,7 @@ router.post("/logIn", (req, res) => {
   const { email, password } = req.body;
   console.log("i am in the log in route"); // we will see it if we post in postman /logIn/logIn and will show up in terminal
   console.log("email", email);
+  console.log(password);
   if (!email || !password) {
     return res.status(400).json({ error: "Complete all the fields" });
   }
