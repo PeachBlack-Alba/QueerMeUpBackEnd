@@ -4,6 +4,8 @@ const userModel = require("../model/userModel");
 const bcrypt = require("bcrypt");
 const key = require("../keys");
 const jwt = require("jsonwebtoken");
+const passport = require("passport");
+
 //const { isEmpty } = require("express-validator"); // use !email or email.isEmpty()
 
 router.post("/logIn", (req, res) => {
