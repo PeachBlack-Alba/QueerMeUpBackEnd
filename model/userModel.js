@@ -18,9 +18,10 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true
+  },
+  favourites: {
+    type: Array
   }
 });
 
 module.exports = mongoose.model("user", userSchema);
-//module.exports = userModel;
-//userSchema.plugin(uniqueValidator);

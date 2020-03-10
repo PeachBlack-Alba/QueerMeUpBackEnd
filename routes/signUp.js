@@ -6,6 +6,7 @@ const userModel = require("../model/userModel");
 const { check, validationResult } = require("express-validator");
 
 router.post("/signUp", (req, res) => {
+  // recieves the req from the front end (axios part) and we set the information in variables
   var email = req.body.email;
   var username = req.body.username;
   var password = req.body.password;

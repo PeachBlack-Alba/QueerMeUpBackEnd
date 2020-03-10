@@ -6,8 +6,6 @@ const key = require("../keys");
 const jwt = require("jsonwebtoken");
 const passport = require("passport");
 
-//const { isEmpty } = require("express-validator"); // use !email or email.isEmpty()
-
 router.post("/logIn", (req, res) => {
   const { email, password } = req.body;
   console.log("i am in the log in route"); // we will see it if we post in postman /logIn/logIn and will show up in terminal
@@ -28,9 +26,11 @@ router.post("/logIn", (req, res) => {
         avatarPicture: user.picture
       };
       const options = { expiresIn: 2592000 };
+      // generate token
       jwt.sign(payload, key.secretOrKey, options, (err, token) => {
         if (err) {
           res.json({
+            // response that we sent back to the front end
             success: false,
             token: "There was an error" // send an error if there is
           });
@@ -57,4 +57,22 @@ router.get(
       .catch(err => res.status(404).json({ error: "User does not exist!" }));
   }
 );
+
+//Add the itinerary to the favorites
+
+router.post("/addFavourite", (req, res) => {
+  console.log("req.body", req.body.favorite);
+  const newFavorite = req.body.favorite;
+  const id = req.body.user;
+  User.findOne({ _id: id }, function(err, user) {
+    if (!user.favorites.includes(newFavorite)) {
+      user.favorites.push(newFavorite);
+      user.save(function(err, user) {
+        if (err) throw err;
+        res.json(user);
+      });
+    }
+  });
+});
+
 module.exports = router;
