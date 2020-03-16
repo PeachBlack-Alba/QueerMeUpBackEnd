@@ -26,6 +26,9 @@ const itinerarySchema = new mongoose.Schema({
   },
   order: {
     type: Number
+  },
+  favourites: {
+    type: Array
   }
 });
 
