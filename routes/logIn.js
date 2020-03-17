@@ -60,20 +60,4 @@ router.get(
 
 //Add the itinerary to the favorites
 
-// router.post("/addFavourite", (req, res) => {
-//   console.log("req.body", req.body.favorite);
-//   const newFavorite = req.body.favorite;
-//   const id = req.body.user;
-//   const username = req.body.username;
-//   User.findOne({ username }, function (err, user)
-//    .then(user => {
-//     //  .push
-//     //    .save
-//     //  res.send(user)
-
-//      res.json(user);
-//    })
-//     .catch(err => res.status(404).json({ error: "whatever error xxxxxx" }));
-// });
-
 module.exports = router;
