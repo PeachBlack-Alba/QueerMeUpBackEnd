@@ -27,6 +27,9 @@ const itinerarySchema = new mongoose.Schema({
   order: {
     type: Number
   },
+  activities: {
+    type: Array
+  },
   favourites: {
     type: Array
   }
