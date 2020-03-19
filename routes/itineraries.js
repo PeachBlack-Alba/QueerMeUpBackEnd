@@ -20,8 +20,12 @@ router.post("/addToFavorite", (req, res) => {
   itineraryModel
     .findById(itiID)
     .then(itinerary => {
-      console.log("hi");
-      if (!itinerary.favourite.includes(userID)) {
+      console.log(itinerary);
+      if (
+        !itinerary.favourite.includes(userID) ||
+        itinerary.favourites.length === 0 ||
+        itinerary.favourites === null
+      ) {
         itinerary.favourites.push(userID);
         console.log("here");
         itinerary.save();
@@ -29,7 +33,7 @@ router.post("/addToFavorite", (req, res) => {
         console.log(itinerary);
         res.status(200).send(itinerary);
       } else {
-        res.send("You have liked this itin already");
+        res.send("You have liked this itinerary already");
       }
     })
     .catch(err => res.send(err));
