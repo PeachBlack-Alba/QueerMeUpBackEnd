@@ -22,7 +22,7 @@ router.post("/addToFavorite", (req, res) => {
     .then(itinerary => {
       console.log(itinerary);
       if (
-        !itinerary.favourite.includes(userID) ||
+        !itinerary.favourites.includes(userID) ||
         itinerary.favourites.length === 0 ||
         itinerary.favourites === null
       ) {
