@@ -39,35 +39,4 @@ router.post("/addToFavorite", (req, res) => {
     .catch(err => res.send(err));
 });
 
-//   userModel.findOne({ username: req.body.username }).then(user => {
-//     console.log("user", user);
-//     let FavItineraries = user.favourites.filter(
-//       oneFavItin => oneFavItin.activitiesId === req.body.activitiesId
-//     );
-
-//     if (FavItineraries.length !== 0) {
-//       console.log("currentFavItineraries", currentFavItineraries);
-//       res.status(400).json({ error: "User already liked this itinerary!" });
-//     } else {
-//       itineraryModel
-//         .findOne({ _id: req.body.activitiesId })
-//         .then(itinerary => {
-//           user.favourites.push({
-//             activitiesID: req.body.activitiesId
-//           });
-
-//           user
-//             .save()
-//             .then(userFavItin => res.json(user.favourites))
-//             .catch(err => {
-//               res.status(500).json({ error: "There's an error" });
-//             });
-//         })
-//         .catch(err => {
-//           res.status(404).json({ error: "error" });
-//         });
-//     }
-//   });
-// });
-
 module.exports = router;
