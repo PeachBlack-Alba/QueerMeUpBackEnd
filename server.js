@@ -25,7 +25,7 @@ app.use("/cities", require("./routes/cities"));
 app.use("/itineraries", require("./routes/itineraries"));
 app.use("/signUp", require("./routes/signUp")); // url will be sigUp/signUp beacuse in the route we said also Signup (router.post("/signUp", (req, res))
 app.use("/logIn", require("./routes/logIn"));
-app.use("/activity", require("./model/itineraryModel"));
+app.use("/activity", require("./routes/activity"));
 
 // app.use("/addFacourite", require("./routes/itineraries"));
 

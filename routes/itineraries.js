@@ -39,4 +39,29 @@ router.post("/addToFavorite", (req, res) => {
     .catch(err => res.send(err));
 });
 
+router.post("/activity/addtoFavourite", (req, res) => {
+  console.log("req.body", req.body);
+  const { itiID, userID, activityname } = req.body;
+  itineraryModel
+    .findById(itiID)
+    .then(itinerary => {
+      itinerary.activities.forEach(activity => {
+        if (activity.name === activityname) {
+          console.log("first if");
+          if (!activity.favourites.includes(userID)) {
+            console.log("second if");
+            activity.favourites.push(userID);
+            console.log(itinerary);
+            itinerary.save().then(saveditinerary => {
+              res.status(200).send(activity);
+            });
+          } else {
+            res.send("You have liked this activity already");
+          }
+        }
+      });
+    })
+    .catch(err => res.send(err));
+});
+
 module.exports = router;
