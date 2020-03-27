@@ -6,20 +6,27 @@ router.post("/addtoFavourite", (req, res) => {
   console.log("req.body", req.body);
   const { itiID, userID, activityname } = req.body;
 
-
- //in oder to update a nested array you need to use the findOneAndUpdate method from mongoDB as follow
-  let update = { $push: { 'activities.$[activity].favourites': userID } }
+  //in oder to update a nested array you need to use the findOneAndUpdate method from mongoDB as follow
+  let update = { $push: { "activities.$[activity].favourites": userID } };
 
   let options = {
     useFindAndModify: false,
     upsert: true,
-    arrayFilters: [{ 'activity.name': activityname }]
-  }
-  itineraryModel.findOneAndUpdate(itiID, update, options, (err, itinerary) => {
-   if(err) console.log('err', err)
-   else res.status(200).send(itinerary);
+    arrayFilters: [{ "activity.name": activityname }]
+  };
+  itineraryModel.findOneAndUpdate(
+    { _id: itiID },
+    update,
+    options,
+    (err, itinerary) => {
+      if (err) console.log("err", err);
+      else {
+        console.log(itinerary);
 
-  })
+        res.status(200).send(itinerary);
+      }
+    }
+  );
 
   // itineraryModel
   //   .findById(itiID)

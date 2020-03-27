@@ -27,8 +27,6 @@ app.use("/signUp", require("./routes/signUp")); // url will be sigUp/signUp beac
 app.use("/logIn", require("./routes/logIn"));
 app.use("/activity", require("./routes/activity"));
 
-// app.use("/addFacourite", require("./routes/itineraries"));
-
 app.listen(port, () => {
   console.log("Server is running on " + port + "port!");
 });
